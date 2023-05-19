@@ -17,7 +17,7 @@ async function createScene() {
         new BABYLON.ArcRotateCamera("Camera", -Math.PI / 2, Math.PI / 2, 5, BABYLON.Vector3.Zero(), scene);
     camera.attachControl(canvas, true);
 
-    const videoDome = new BABYLON.VideoDome("videoDome", ["/media/elytra.webm"], {
+    const videoDome = new BABYLON.VideoDome("videoDome", ["http://135.180.76.185:20000/elytra.webm"], {
         resolution: 128,
         clickToPlay: true,
         autoPlay: false
