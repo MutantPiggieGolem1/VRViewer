@@ -23,13 +23,13 @@ async function createScene() {
         autoPlay: false
     }, scene);
 
-    if (await navigator.xr?.isSessionSupported("immersive-ar")) {
-        await scene.createDefaultXRExperienceAsync({
-            uiOptions: {
-                sessionMode: "immersive-ar",
-            },
-        });
-    }
+    // if (await navigator.xr?.isSessionSupported("immersive-ar")) {
+    //     await scene.createDefaultXRExperienceAsync({
+    //         uiOptions: {
+    //             sessionMode: "immersive-ar",
+    //         },
+    //     });
+    // }
 
     return scene;
 }
