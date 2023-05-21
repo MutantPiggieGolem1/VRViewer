@@ -26,7 +26,7 @@
     </script>
   </head>
   <body>
-    <a-scene>
+    <a-scene vr-mode-ui="enabled: true">
       <a-assets>
         <video id="video" preload="auto"
                src="/dream.mp4"
@@ -37,9 +37,13 @@
         rotation="0 -90 0"
         src="#video"
         visible="true"
+        segments-height=256
+        segments-width=256
         play-on-click>
       </a-videosphere>
-      <a-camera>
+      <a-camera
+      fov="70"
+      wasd-controls-enabled="false">
       </a-camera>
     </a-scene>
   </body>
