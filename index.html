@@ -8,22 +8,26 @@
   </head>
   <body>
     <script>
-      document.onclick = (ev) => document.getElementById("scene").enterVR();
+      document.onclick = (ev) => {
+        document.getElementById("sph").components.material.material.map.image.play();
+        document.getElementById("scene").enterVR();
+      }
     </script>
     <a-scene id="scene" vr-mode-ui="enabled: true">
       <a-assets timeout="10000">
         <video id="video" preload="auto"
             src="dream.mp4"
-            autoplay loop="false"
+            loop="false"
             crossOrigin="anonymous"></video>
       </a-assets>
-      <a-videosphere
+      <a-videosphere id="sph"
         rotation="0 -90 0"
         src="#video"
         segments-height=256
         segments-width=256
         radius=1000
-        loop=false>
+        loop=false
+        autoplay=false>
       </a-videosphere>
       <a-camera
         near=200
