@@ -8,17 +8,17 @@
   </head>
   <body>
     <script>
+      let a = false;
       document.onclick = (ev) => {
+        if (a) return
         document.getElementById("sph").components.material.material.map.image.play();
-        document.getElementById("scene").enterVR();
+        a = true
       }
     </script>
     <a-scene id="scene" vr-mode-ui="enabled: true">
       <a-assets timeout="10000">
         <video id="video" preload="auto"
-            src="dream.mp4"
-            loop="false"
-            crossOrigin="anonymous"></video>
+          src="dream.mp4" loop=false></video>
       </a-assets>
       <a-videosphere id="sph"
         rotation="0 -90 0"
