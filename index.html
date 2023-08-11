@@ -5,80 +5,30 @@
     <title>Video Player</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <script>
-      AFRAME.registerComponent('play-on-click', {
-        init: function () {
-          this.onClick = this.onClick.bind(this);
-        },
-        play: function () {
-          window.addEventListener('click', this.onClick);
-        },
-        pause: function () {
-          window.removeEventListener('click', this.onClick);
-        },
-        onClick: function (evt) {
-          var videoEl = this.el.getAttribute('material').src;
-          if (!videoEl) { return; }
-          this.el.object3D.visible = true;
-          videoEl.play();
-        }
-      });
-      AFRAME.registerComponent('hide-on-play', {
-        schema: {type: 'selector'},
-        init: function () {
-          this.onPlaying = this.onPlaying.bind(this);
-          this.onPause = this.onPause.bind(this);
-          this.el.object3D.visible = !this.data.playing;
-        },
-        play: function () {
-          if (this.data) {
-            this.data.addEventListener('playing', this.onPlaying);
-            this.data.addEventListener('pause', this.onPause);
-          }
-        },
-        pause: function () {
-          if (this.data) {
-            this.data.removeEventListener('playing', this.onPlaying);
-            this.data.removeEventListener('pause', this.onPause);
-          }
-        },
-        onPlaying: function (evt) {
-          this.el.object3D.visible = false;
-        },
-        onPause: function (evt) {
-          this.el.object3D.visible = true;
-        }
-      });
-    </script>
   </head>
   <body>
-    <a-scene vr-mode-ui="enabled: true">
-      <a-assets>
+    <script>
+      document.onclick = (ev) => document.getElementById("scene").enterVR();
+    </script>
+    <a-scene id="scene" vr-mode-ui="enabled: true">
+      <a-assets timeout="10000">
         <video id="video" preload="auto"
-               src="/dream.mp4"
-               autoplay loop="false"
-               crossOrigin="anonymous"></video>
+            src="dream.mp4"
+            autoplay loop="false"
+            crossOrigin="anonymous"></video>
       </a-assets>
       <a-videosphere
         rotation="0 -90 0"
         src="#video"
-        visible="false"
         segments-height=256
         segments-width=256
-        play-on-click>
+        radius=1000
+        loop=false>
       </a-videosphere>
       <a-camera
-      fov="70"
-      wasd-controls-enabled="false">
-      <a-entity
-          position="0 0 -1.5"
-          text="align: center;
-                width: 6;
-                wrapCount: 100;
-                color: black;
-                value: Click to play"
-          hide-on-play="#video">
-        </a-entity>
+        near=200
+        far=1050
+      	wasd-controls-enabled=false>
       </a-camera>
     </a-scene>
   </body>
